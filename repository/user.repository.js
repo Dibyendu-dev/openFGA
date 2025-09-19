@@ -1,6 +1,7 @@
 import { User } from "../models/user";
 
-async function create(userData) {
+
+async function createUser(userData) {
     const user = new User(userData);
     await user.save();
     return user;
@@ -11,5 +12,5 @@ async function findByEmail(email) {
 }
 
 module.exports = {
-    create, findByEmail
+    createUser, findByEmail
 }
