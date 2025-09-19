@@ -30,3 +30,5 @@ async function login({email,password}) {
     const token = signToken(user._id)
     return { user, token}
 }
+
+module.exports = {login,register}
