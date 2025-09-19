@@ -8,5 +8,6 @@ function loadEnv(){
 loadEnv()
 
 export const serverConfig = {
-    PORT: process.env.PORT,
+    PORT: process.env.PORT || 3001 ,
+    MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/openfga",
 }
