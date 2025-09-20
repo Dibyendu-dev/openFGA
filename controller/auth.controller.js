@@ -1,8 +1,8 @@
-import {login,register} from '../service/authService.js'
+import {loginService,registerService} from '../service/authService.js'
 
-const register = async (req,res) => {
+const registerController = async (req,res) => {
     try {
-     const { user, token} = await register(req.body);
+     const { user, token} = await registerService(req.body);
      res.status(201).send({
         data: { user, token},
         success:true,
@@ -13,10 +13,10 @@ const register = async (req,res) => {
     }
 }
 
-const login = async (req, res) => {
+const loginController = async (req, res) => {
     try {
         const {email,password} = req.body
-      const { user, token} = await login({email,password});
+      const { user, token} = await loginService({email,password});
       res.status(201).send({
         data: { user, token},
         success:true,
@@ -25,4 +25,8 @@ const login = async (req, res) => {
     } catch (error) {
          res.status(400).send(error.message)
     }
+}
+
+export  {
+    registerController,loginController
 }
