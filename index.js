@@ -2,8 +2,10 @@ import express from "express";
 import cors from "cors";
 import { serverConfig } from "./config/index.js";
 import { connectDB } from "./config/dbConfig.js";
+import { initializeFgaClient } from "./openfga.js";
 import authRouter from "./routes/auth.routes.js";
 import todoRouter from "./routes/todo.routes.js";
+import { testOpenFGATodoAPI } from "./test-openfga-todo.js";
 
 const app = express();
 
@@ -15,4 +17,6 @@ app.use("/api/todos", todoRouter);
 app.listen(serverConfig.PORT, async () => {
   console.log(`port is running on http://localhost: ${serverConfig.PORT}`);
   await connectDB();
+  await initializeFgaClient();
+  await testOpenFGATodoAPI();
 });
